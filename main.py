@@ -23,7 +23,7 @@ run_with_ngrok(app)
 def initial():
     return render_template("index.html")
 
-@app.route("submit-prompt", methods=["POST"])
+@app.route("/submit-prompt", methods=["POST"])
 def generate_image():
     prompt = request.form["prompt-input"]
 
