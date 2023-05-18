@@ -34,7 +34,7 @@ def generate_image():
     buffered = BytesIO()
     image.save(buffered, format="PNG")
     img_str = base64.b64encode(buffered.getvalue())
-    img_str = "data:image/png;base64" + str(img_str)[2:-1]
+    img_str = "data:image/png;base64," + str(img_str)[2:-1]
 
     print("Sending image ...")
     return render_template("index.html", generated_image=img_str)
