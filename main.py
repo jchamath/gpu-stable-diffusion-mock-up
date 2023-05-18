@@ -26,14 +26,17 @@ def initial():
 @app.route("/submit-prompt", methods=["POST"])
 def generate_image():
     prompt = request.form["prompt-input"]
+    print(f"Generating an image of {prompt}")
 
     image = pipe(prompt).images[0]
+    print("Image generated! Converting image ...")
 
     buffered = BytesIO()
     image.save(buffered, format="PNG")
     img_str = base64.b64encode(buffered.getvalue())
     img_str = "data:image/png;base64" + str(img_str)[2:-1]
 
+    print("Sending image ...")
     return render_template("index.html", generate_image=img_str)
 
 if __name__ == "__main__":
